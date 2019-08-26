@@ -18,11 +18,11 @@ Renderer::Renderer(std::shared_ptr<TextureManager> textureManager,
   setupScene();
 }
 
-// Set up the Framebuffer for the deffered shading
+// Set up the Framebuffer for the deferred shading
 void Renderer::setupFrameBuffers() {
   /***** GBUFFER *****/
-  // TODO: Increase performance + memory usage(rethink texture precision, clamp
-  // mode, compute position from depth)
+  // TODO: Increase performance + memory usage(rethink texture precision,
+  // compute position from depth)
   // r,g,b = Position
   std::shared_ptr<Texture> gPosition = textureManager->createEmpty("gPosition");
   gPosition->texImage(0, GL_RGB32F, renderData.width, renderData.height, 0,

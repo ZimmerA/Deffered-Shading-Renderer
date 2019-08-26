@@ -9,8 +9,8 @@ DirectionalLightPass::DirectionalLightPass(
     std::shared_ptr<TextureManager> textureManager)
     : RenderPass(frameBuffer), textureManager{textureManager} {
   directionalPBRProgram = shaderManager->create(
-      "directionalLightProgram", "res/shaders/screenQuad.vs",
-      "res/shaders/directionalLight.fs");
+      "directionalLightProgram", "res/Shaders/screenQuad.vs",
+      "res/Shaders/directionalLight.fs");
   directionalPBRProgram->use();
   directionalPBRProgram->setInt("gWorldPos", 0);
   directionalPBRProgram->setInt("gNormalOccl", 1);
@@ -37,7 +37,7 @@ void DirectionalLightPass::render(const RenderData &renderData,
   directionalPBRProgram->setFloat("uExposure", scene->toneMappingExposure);
   directionalPBRProgram->setMat4("uLightViewProjMat", renderData.lightViewProj);
   directionalPBRProgram->setMat4("uViewMat", renderData.view);
-
+  directionalPBRProgram->setInt("uDebugSSAO", debugSSAO);
   glActiveTexture(GL_TEXTURE0);
   textureManager->getTextureByName("gPosition")->bind();
   glActiveTexture(GL_TEXTURE1);

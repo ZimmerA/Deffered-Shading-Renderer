@@ -8,8 +8,8 @@ GPass::GPass(std::shared_ptr<FrameBuffer> frameBuffer,
              std::shared_ptr<ShaderManager> &shaderManager)
     : RenderPass(frameBuffer) {
   gProgram =
-      shaderManager->create("gProgram", "res/shaders/deffered/gShader.vs",
-                            "res/shaders/deffered/gShader.fs");
+      shaderManager->create("gProgram", "res/Shaders/deferred/gShader.vs",
+                            "res/Shaders/deferred/gShader.fs");
   gProgram->use();
   gProgram->setInt("uAlbedoMap", 0);
   gProgram->setInt("uMetalRoughnessMap", 1);

@@ -14,6 +14,7 @@ uniform mat4 uLightViewProjMat;
 uniform mat4 uViewMat;
 
 uniform bool uSSAOOn;
+uniform bool uDebugSSAO;
 uniform bool uShadowOn;
 uniform vec3 uLightDirection;
 uniform vec3 uLightColor;
@@ -154,5 +155,10 @@ void main()
 
     // Gamma correction
     color = pow(color, vec3(1.0/2.2)); 
-    FragColor = vec4(color.xyz, 1.0);
+    if(uDebugSSAO) {
+        FragColor = vec4(vec3(ssao), 1.0);
+    } else {
+        FragColor = vec4(color.xyz, 1.0);
+    }
+
 }

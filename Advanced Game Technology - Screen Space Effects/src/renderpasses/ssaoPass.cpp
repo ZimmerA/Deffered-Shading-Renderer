@@ -10,8 +10,8 @@ SSAOPass::SSAOPass(std::shared_ptr<FrameBuffer> frameBuffer,
     : RenderPass{frameBuffer}, textureManager{textureManager} {
   createSSAOKernel();
   ssaoProgram = shaderManager->create("directionalLightProgram",
-                                      "res/shaders/screenQuad.vs",
-                                      "res/shaders/ssao/ssao.fs");
+                                      "res/Shaders/screenQuad.vs",
+                                      "res/Shaders/ssao/ssao.fs");
   ssaoProgram->use();
   ssaoProgram->setInt("gPosition", 0);
   ssaoProgram->setInt("gNormalOccl", 1);

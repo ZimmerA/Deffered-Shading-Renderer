@@ -8,6 +8,7 @@ uniform sampler2D uSSAOMap;
 
 const float BLUR_KERNEL_RADIUS = 8.0;
 uniform bool uHorizontal;
+uniform int uFilterMode;
 
 float crossBilateralWeight(float r, float d, float d0)
 {
@@ -19,75 +20,80 @@ float crossBilateralWeight(float r, float d, float d0)
 }
 
 void main() {
-    /*
-    // Gauss Blur (has to be done single pass)
-    vec2 texelSize = 1.0 / vec2(textureSize(uSSAOMap, 0));
-    float result = 0.0;
-    for (int x = -2; x < 2; ++x) 
+    if(uFilterMode == 1)
     {
-        for (int y = -2; y < 2; ++y) 
+        // Gauss Blur (has to be done single pass)
+        vec2 texelSize = 1.0 / vec2(textureSize(uSSAOMap, 0));
+        float result = 0.0;
+        for (int x = -2; x < 2; ++x) 
         {
-            vec2 offset = vec2(float(x), float(y)) * texelSize;
-            result += texture(uSSAOMap, UV + offset).r;
+            for (int y = -2; y < 2; ++y) 
+            {
+                vec2 offset = vec2(float(x), float(y)) * texelSize;
+                result += texture(uSSAOMap, UV + offset).r;
+            }
         }
-    }
-    FragColor = result / (4.0 * 4.0);
-    */
-
-    // Edge preserving Cross Bilateral Filter (multi pass, uHorizontal/vertical axis)
-    // Taken from Stable SSAO in Battlefield 3 with Selective Temporal Filtering
-    vec2 texelSize = 1.0 / vec2(textureSize(uSSAOMap, 0));
-    float result = 0.0;
-    float weightSum = 0.0;
-    float centerDepth = texture(gPosition, UV).z;
-
-    float i = 0.0;
-
-    // Blur first half of samples with point sampling
-    for (; i < BLUR_KERNEL_RADIUS / 2.0; i++) 
+        FragColor = result / (4.0 * 4.0);
+    } else if(uFilterMode == 2)
     {
-        vec2 offset = vec2(0,0);
-        if(uHorizontal)
-        {
-            offset = vec2(float(i), 0.0) * texelSize;
-        } else 
-        {
-            offset = vec2(0.0, float(i)) * texelSize;
-        }
+        // Edge preserving Cross Bilateral Filter (multi pass, uHorizontal/vertical axis)
+        // Taken from Stable SSAO in Battlefield 3 with Selective Temporal Filtering
+        vec2 texelSize = 1.0 / vec2(textureSize(uSSAOMap, 0));
+        float result = 0.0;
+        float weightSum = 0.0;
+        float centerDepth = texture(gPosition, UV).z;
 
-        float sampleDepth = texture(gPosition, UV - offset).z;
-        float weight = crossBilateralWeight(i, sampleDepth, centerDepth);
-        result += texture(uSSAOMap, UV - offset).r * weight;
-        weightSum += weight;
+        float i = 0.0;
 
-        sampleDepth = texture(gPosition, UV + offset).z;
-        weight = crossBilateralWeight(i, sampleDepth, centerDepth);
-        result += texture(uSSAOMap, UV + offset).r * weight;
-        weightSum += weight;
-    }
+        // Blur first half of samples with point sampling
+        for (; i < BLUR_KERNEL_RADIUS / 2.0; i++) 
+        {
+            vec2 offset = vec2(0,0);
+            if(uHorizontal)
+            {
+                offset = vec2(float(i), 0.0) * texelSize;
+            } else 
+            {
+                offset = vec2(0.0, float(i)) * texelSize;
+            }
 
-    // Blur second half of samples with linear sampling
-    for (; i < BLUR_KERNEL_RADIUS; i += 2.0) 
-    {
-        vec2 offset = vec2(0,0);
-        if(uHorizontal)
-        {
-            offset = vec2(float(i) + 0.5f, 0.0) * texelSize;
-        } else 
-        {
-            offset = vec2(0.0, float(i) + 0.5f) * texelSize;
+            float sampleDepth = texture(gPosition, UV - offset).z;
+            float weight = crossBilateralWeight(i, sampleDepth, centerDepth);
+            result += texture(uSSAOMap, UV - offset).r * weight;
+            weightSum += weight;
+
+            sampleDepth = texture(gPosition, UV + offset).z;
+            weight = crossBilateralWeight(i, sampleDepth, centerDepth);
+            result += texture(uSSAOMap, UV + offset).r * weight;
+            weightSum += weight;
         }
 
-        float sampleDepth = texture(gPosition, UV - offset).z;
-        float weight = crossBilateralWeight(i, sampleDepth, centerDepth);
-        result += texture(uSSAOMap, UV - offset).r * weight;
-        weightSum += weight;
+        // Blur second half of samples with linear sampling
+        for (; i < BLUR_KERNEL_RADIUS; i += 2.0) 
+        {
+            vec2 offset = vec2(0,0);
+            if(uHorizontal)
+            {
+                offset = vec2(float(i) + 0.5f, 0.0) * texelSize;
+            } else 
+            {
+                offset = vec2(0.0, float(i) + 0.5f) * texelSize;
+            }
 
-        sampleDepth = texture(gPosition, UV + offset).z;
-        weight = crossBilateralWeight(i, sampleDepth, centerDepth);
-        result += texture(uSSAOMap, UV + offset).r * weight;
-        weightSum += weight;
+            float sampleDepth = texture(gPosition, UV - offset).z;
+            float weight = crossBilateralWeight(i, sampleDepth, centerDepth);
+            result += texture(uSSAOMap, UV - offset).r * weight;
+            weightSum += weight;
+
+            sampleDepth = texture(gPosition, UV + offset).z;
+            weight = crossBilateralWeight(i, sampleDepth, centerDepth);
+            result += texture(uSSAOMap, UV + offset).r * weight;
+            weightSum += weight;
+        }
+
+        FragColor = result / weightSum;
+    } else {
+        // No Filter
+        FragColor = texture(uSSAOMap, UV).r;
     }
-
-    FragColor = result / weightSum;
 }

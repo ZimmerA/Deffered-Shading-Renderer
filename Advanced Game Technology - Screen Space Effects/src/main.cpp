@@ -19,7 +19,7 @@ int main() {
 
   GLFWwindow *window = glfwCreateWindow(
       SCREEN_W, SCREEN_H,
-      "Advanced Game Technology - Deferred Shading And Screen Space Effects",
+      "Advanced Game Technology - Deferred Shading And Screen Space Techniques",
       nullptr, nullptr);
 
   glfwMakeContextCurrent(window);
@@ -93,12 +93,34 @@ int main() {
 
     static float f = 0.0f;
     static int counter = 0;
-
+    ImGui::ShowDemoWindow();
     ImGui::Begin("Controller");
     if (ImGui::CollapsingHeader("SSAO")) {
       ImGui::Checkbox("Enable SSAO", &renderer->renderData.ssaoOn);
+      ImGui::Checkbox("SSAO Debug View",
+                      &renderer->directionalLightPass->debugSSAO);
       ImGui::InputFloat("Bias", &renderer->ssaoPass->bias);
       ImGui::InputFloat("Radius", &renderer->ssaoPass->radius);
+      ImGui::Text("Blur Filter");
+      if (ImGui::RadioButton("None",
+                             renderer->ssaoBlurPass->blurMode ==
+                                 SSAOBlurPass::BlurMode::NONE)) {
+        renderer->ssaoBlurPass->blurMode =
+            SSAOBlurPass::BlurMode::NONE;
+      }
+      ImGui::SameLine();
+      if (ImGui::RadioButton("Gauss 4x4",
+                             renderer->ssaoBlurPass->blurMode ==
+                                 SSAOBlurPass::BlurMode::GAUSS_4x4)) {
+        renderer->ssaoBlurPass->blurMode = SSAOBlurPass::BlurMode::GAUSS_4x4;
+      }
+      ImGui::SameLine();
+      if (ImGui::RadioButton("Cross Bilateral 8x8",
+                             renderer->ssaoBlurPass->blurMode ==
+                                 SSAOBlurPass::BlurMode::CROSS_BILATERAL_8x8)) {
+        renderer->ssaoBlurPass->blurMode =
+            SSAOBlurPass::BlurMode::CROSS_BILATERAL_8x8;
+      }
     }
 
     if (ImGui::CollapsingHeader("Directional Light and ShadowMapping")) {

@@ -6,8 +6,8 @@ GAlphaCutoutPass::GAlphaCutoutPass(
     std::shared_ptr<ShaderManager> &shaderManager)
     : RenderPass(frameBuffer) {
   gAlphaCutoutProgram =
-      shaderManager->create("gProgram", "res/shaders/deffered/gShader.vs",
-                            "res/shaders/deffered/gShaderAlphaCutout.fs");
+      shaderManager->create("gProgram", "res/Shaders/deferred/gShader.vs",
+                            "res/Shaders/deferred/gShaderAlphaCutout.fs");
   gAlphaCutoutProgram->use();
   gAlphaCutoutProgram->setInt("uAlbedoMap", 0);
   gAlphaCutoutProgram->setInt("uMetalRoughnessMap", 1);

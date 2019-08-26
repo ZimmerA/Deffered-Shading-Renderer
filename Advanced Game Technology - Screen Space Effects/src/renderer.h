@@ -1,8 +1,8 @@
 #ifndef RENDERER_H
 #define RENDERER_H
 
-constexpr auto SCREEN_W = 1920;
-constexpr auto SCREEN_H = 1080;
+constexpr auto SCREEN_W = 1280;
+constexpr auto SCREEN_H = 720;
 
 #include "glad.h"
 #include "GLFW/glfw3.h"
@@ -25,11 +25,6 @@ constexpr auto SCREEN_H = 1080;
 #include "scene.h"
 #include "shader.h"
 #include "vertexArray.h"
-
-struct State {
-  glm::vec4 clearColor{0};
-  GLenum DEPTH_TEST;
-};
 
 class Renderer {
 public:
