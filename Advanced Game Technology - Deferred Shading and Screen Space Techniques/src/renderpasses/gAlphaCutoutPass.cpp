@@ -1,5 +1,4 @@
 #include "gAlphaCutoutPass.h"
-#include "glTimerQuery.h"
 
 GAlphaCutoutPass::GAlphaCutoutPass(
     std::shared_ptr<FrameBuffer> frameBuffer,
@@ -18,7 +17,6 @@ GAlphaCutoutPass::GAlphaCutoutPass(
 
 void GAlphaCutoutPass::render(const RenderData &renderData,
                               std::shared_ptr<Scene> &scene) {
-  GLTimerQuery timer(result);
   RenderPass::begin();
   gAlphaCutoutProgram->use();
   gAlphaCutoutProgram->setMat4("uMV", renderData.mv);

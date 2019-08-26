@@ -1,5 +1,4 @@
 #include "depthMapPass.h"
-#include "glTimerQuery.h"
 #include "glm/glm/gtc/matrix_transform.hpp"
 
 DepthMapPass::DepthMapPass(std::shared_ptr<FrameBuffer> frameBuffer,
@@ -12,7 +11,6 @@ DepthMapPass::DepthMapPass(std::shared_ptr<FrameBuffer> frameBuffer,
 
 void DepthMapPass::render(const RenderData &renderData,
                           std::shared_ptr<Scene> &scene) {
-  GLTimerQuery timer(result);
   RenderPass::begin();
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   depthMapProgram->use();

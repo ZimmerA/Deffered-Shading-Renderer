@@ -8,7 +8,6 @@
 class RenderPass {
 public:
   virtual void begin() noexcept;
-  double result{};
 
 protected:
   RenderPass(std::shared_ptr<FrameBuffer> frameBuffer) noexcept

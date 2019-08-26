@@ -102,9 +102,6 @@
     <ClCompile Include="src\renderpasses\depthMapPass.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="src\common\glTimerQuery.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="src\renderpasses\gZPrePass.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -204,13 +201,13 @@
     <ClInclude Include="src\renderpasses\depthMapPass.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="src\common\glTimerQuery.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="src\renderpasses\gZPrePass.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\renderpasses\gAlphaCutoutPass.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\glad\glad.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

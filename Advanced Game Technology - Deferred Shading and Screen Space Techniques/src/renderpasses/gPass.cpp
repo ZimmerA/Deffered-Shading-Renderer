@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "gPass.h"
-#include "glTimerQuery.h"
 #include "glm/glm/gtc/matrix_transform.hpp"
 
 GPass::GPass(std::shared_ptr<FrameBuffer> frameBuffer,
@@ -20,7 +19,6 @@ GPass::GPass(std::shared_ptr<FrameBuffer> frameBuffer,
 
 void GPass::render(const RenderData &renderData,
                    std::shared_ptr<Scene> &scene) {
-  GLTimerQuery timer(result);
   RenderPass::begin();
 
   glDepthMask(GL_FALSE);

@@ -1,5 +1,4 @@
 #include "ssaoBlurPass.h"
-#include "glTimerQuery.h"
 
 SSAOBlurPass::SSAOBlurPass(std::shared_ptr<FrameBuffer> frameBuffer,
                            std::shared_ptr<ShaderManager> &shaderManager,
@@ -16,7 +15,6 @@ SSAOBlurPass::SSAOBlurPass(std::shared_ptr<FrameBuffer> frameBuffer,
 
 void SSAOBlurPass::render(const RenderData &renderData,
                           std::shared_ptr<Scene> &scene) {
-  GLTimerQuery timer(result);
   RenderPass::begin();
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   ssaoBlurProgram->use();

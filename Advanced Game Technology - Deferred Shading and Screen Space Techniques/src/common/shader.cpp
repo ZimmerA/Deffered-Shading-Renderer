@@ -97,7 +97,7 @@ void ShaderProgram::setVec3(const std::string &name, const glm::vec3 &value) {
 
 void ShaderProgram::setVec3Arr(const std::string &name,
                                const std::vector<glm::vec3> &value) {
-  glUniform3fv(glGetUniformLocation(handle, name.c_str()), value.size(),
+  glUniform3fv(glGetUniformLocation(handle, name.c_str()), static_cast<GLsizei>(value.size()),
                glm::value_ptr(value[0]));
 }
 

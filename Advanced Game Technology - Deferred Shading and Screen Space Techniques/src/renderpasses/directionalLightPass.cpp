@@ -1,7 +1,6 @@
 #include <iostream>
 
 #include "directionalLightPass.h"
-#include "glTimerQuery.h"
 
 DirectionalLightPass::DirectionalLightPass(
     std::shared_ptr<FrameBuffer> frameBuffer,
@@ -22,8 +21,6 @@ DirectionalLightPass::DirectionalLightPass(
 
 void DirectionalLightPass::render(const RenderData &renderData,
                                   const std::shared_ptr<Scene> scene) {
-  GLTimerQuery timer(result);
-
   RenderPass::begin();
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   const glm::vec4 dir(scene->lightDirection, 0);

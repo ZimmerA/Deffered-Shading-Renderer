@@ -15,7 +15,7 @@ public:
                        std::shared_ptr<TextureManager> textureManager);
   void render(const RenderData &renderData, const std::shared_ptr<Scene> scene);
 
-  bool debugSSAO;
+  bool debugSSAO = false;
 
 private:
   std::shared_ptr<ShaderProgram> directionalPBRProgram;

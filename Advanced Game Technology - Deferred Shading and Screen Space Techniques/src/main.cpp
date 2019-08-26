@@ -134,14 +134,6 @@ int main() {
     ImGui::Spacing();
     ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
                 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
-    ImGui::Text("Depthmap pass(Directional light shadow): %f",
-                renderer->depthMapPass->result);
-    ImGui::Text("Z-Prepass: %f", renderer->gZPrePass->result);
-    ImGui::Text("Gpass: %f", renderer->gPass->result);
-    ImGui::Text("GAlphaCutoutPass: %f", renderer->gAlphaCutoutPass->result);
-    ImGui::Text("SSAO pass: %f ", renderer->ssaoPass->result);
-    ImGui::Text("SSAO blur passes: %f ", renderer->ssaoBlurPass->result);
-    ImGui::Text("light pass: %f ", renderer->directionalLightPass->result);
 
     ImGui::End();
 

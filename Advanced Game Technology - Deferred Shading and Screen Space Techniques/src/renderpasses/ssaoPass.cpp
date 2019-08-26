@@ -1,6 +1,5 @@
 #include <random>
 
-#include "glTimerQuery.h"
 #include "ssaoPass.h"
 #include "util.h"
 
@@ -21,7 +20,6 @@ SSAOPass::SSAOPass(std::shared_ptr<FrameBuffer> frameBuffer,
 
 void SSAOPass::render(const RenderData &renderData,
                       std::shared_ptr<Scene> &scene) {
-  GLTimerQuery timer(result);
   RenderPass::begin();
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   ssaoProgram->use();

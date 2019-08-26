@@ -18,7 +18,7 @@ std::shared_ptr<Texture> TextureManager::create(const std::string &name,
   const GLenum pixelFormat = [&] {
     if (componentCount == 3)
       return GL_RGB;
-    if (componentCount == 4)
+    else
       return GL_RGBA;
   }();
 
