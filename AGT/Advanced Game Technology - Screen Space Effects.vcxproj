@@ -15,7 +15,7 @@
     <ProjectGuid>{5E132770-FAE0-4C2D-BD51-B8C5A3FCCE5D}</ProjectGuid>
     <RootNamespace>AdvancedGameTechnologyScreenSpaceEffects</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Advanced Game Technology - Deferred Shading and Screen Space Techniques</ProjectName>
+    <ProjectName>AGT</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
