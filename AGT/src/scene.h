@@ -5,6 +5,14 @@
 #include "model.h"
 #include "vertexArray.h"
 
+struct Scene {
+  std::vector<Mesh> opaqueMeshes;
+  std::vector<Mesh> alphaCutoutMeshes;
+  glm::vec3 lightDirection = glm::vec3(0.0, -1.0, .1);
+  glm::vec3 lightColor = glm::vec3(1, 1, 1);
+  float toneMappingExposure = 15.0f;
+};
+
 struct RenderData {
   int width, height;
   glm::mat4 model{1};
@@ -22,14 +30,6 @@ struct RenderData {
 
   // SSAO
   bool ssaoOn = true;
-};
-
-struct Scene {
-  std::vector<Mesh> opaqueMeshes;
-  std::vector<Mesh> alphaCutoutMeshes;
-  glm::vec3 lightDirection = glm::vec3(0.0, -1.0, .1);
-  glm::vec3 lightColor = glm::vec3(1, 1, 1);
-  float toneMappingExposure = 15.0f;
 };
 
 #endif
