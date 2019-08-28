@@ -93,7 +93,6 @@ int main() {
 
     static float f = 0.0f;
     static int counter = 0;
-    ImGui::ShowDemoWindow();
     ImGui::Begin("Controller");
     if (ImGui::CollapsingHeader("SSAO")) {
       ImGui::Checkbox("Enable SSAO", &renderer->renderData.ssaoOn);
