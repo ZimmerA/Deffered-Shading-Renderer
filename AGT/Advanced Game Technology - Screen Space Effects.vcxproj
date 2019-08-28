@@ -45,12 +45,12 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(ProjectDir)lib\glfw\include;$(ProjectDir)lib;$(ProjectDir)lib\tinygltf;$(ProjectDir)lib\imgui-master;$(ProjectDir)lib\stb;$(ProjectDir)lib\KHR;$(ProjectDir)lib\glm\;$(ProjectDir)lib\glad;$(ProjectDir)src\common;$(ProjectDir)src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)lib\glad;$(ProjectDir)lib\glfw\build\src\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)lib\glad;$(ProjectDir)lib\glfw\libs\src\dbg;$(LibraryPath)</LibraryPath>
     <CodeAnalysisRuleSet>CppCoreCheckRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(ProjectDir)lib\glfw\include;$(ProjectDir)lib;$(ProjectDir)lib\tinygltf;$(ProjectDir)lib\imgui-master;$(ProjectDir)lib\stb;$(ProjectDir)lib\KHR;$(ProjectDir)lib\glm\;$(ProjectDir)lib\glad;$(ProjectDir)src\common;$(ProjectDir)src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)lib\glad;$(ProjectDir)lib\glfw\build\src\Release;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(ProjectDir)lib\glad;$(ProjectDir)lib\glfw\libs\src\rls;$(LibraryPath)</LibraryPath>
     <CodeAnalysisRuleSet>CppCoreCheckRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
