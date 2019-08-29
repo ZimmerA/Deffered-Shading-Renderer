@@ -74,10 +74,10 @@ void main() {
             vec2 offset = vec2(0,0);
             if(uHorizontal)
             {
-                offset = vec2(float(i) + 0.5f, 0.0) * texelSize;
+                offset = vec2(float(i) + 0.5, 0.0) * texelSize;
             } else 
             {
-                offset = vec2(0.0, float(i) + 0.5f) * texelSize;
+                offset = vec2(0.0, float(i) + 0.5) * texelSize;
             }
 
             float sampleDepth = texture(gPosition, UV - offset).z;
