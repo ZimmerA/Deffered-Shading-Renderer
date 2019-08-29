@@ -51,8 +51,8 @@ void Renderer::setupFrameBuffers() {
   // r,g, b = emmisive, a = Roughness
   std::shared_ptr<Texture> gEmmisiveRoughness =
       textureManager->createEmpty("gEmmisiveRoughness");
-  gEmmisiveRoughness->texImage(0, GL_RGBA16F, renderData.width,
-                               renderData.height, 0, GL_RGBA, GL_FLOAT,
+  gEmmisiveRoughness->texImage(0, GL_RGBA, renderData.width, renderData.height,
+                               0, GL_RGBA, GL_UNSIGNED_BYTE,
                                nullptr);
   gEmmisiveRoughness->texParameteri(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
   gEmmisiveRoughness->texParameteri(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
