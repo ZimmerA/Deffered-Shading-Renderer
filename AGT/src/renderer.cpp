@@ -25,7 +25,7 @@ void Renderer::setupFrameBuffers() {
   // compute position from depth)
   // r,g,b = Position
   std::shared_ptr<Texture> gPosition = textureManager->createEmpty("gPosition");
-  gPosition->texImage(0, GL_RGB32F, renderData.width, renderData.height, 0,
+  gPosition->texImage(0, GL_RGB16F, renderData.width, renderData.height, 0,
                       GL_RGB, GL_FLOAT, nullptr);
   gPosition->texParameteri(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
   gPosition->texParameteri(GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -35,7 +35,7 @@ void Renderer::setupFrameBuffers() {
   // r,g,b = Normal a = Occlusion
   std::shared_ptr<Texture> gNormalOccl =
       textureManager->createEmpty("gNormalOccl");
-  gNormalOccl->texImage(0, GL_RGBA32F, renderData.width, renderData.height, 0,
+  gNormalOccl->texImage(0, GL_RGBA16F, renderData.width, renderData.height, 0,
                         GL_RGBA, GL_FLOAT, nullptr);
   gNormalOccl->texParameteri(GL_TEXTURE_MIN_FILTER, GL_NEAREST);
   gNormalOccl->texParameteri(GL_TEXTURE_MAG_FILTER, GL_NEAREST);

@@ -282,7 +282,7 @@ void GltfLoader::loadMaterials(tinygltf::Model &model) {
     std::shared_ptr<PBRMaterial> mat =
         materialManager->createEmpty("sponza" + std::to_string(i));
     // TODO: find more elegent way to set shaders
-    mat->shader = shaderManager->getProgramByName("gProgram");
+	mat->shader = shaderManager->getProgramByName("gProgram");
     loadedMaterials[i++] = mat;
 
     for (const auto &content : material.values) {
@@ -335,11 +335,12 @@ void GltfLoader::loadMaterials(tinygltf::Model &model) {
 
       if (content.first == "alphaMode") {
         if (content.second.string_value == "MASK") {
+			mat->shader = shaderManager->getProgramByName("gAlphaProgram");
           mat->mode = M_MASK;
         } else if (content.second.string_value == "BLEND") {
           mat->mode = M_BLEND;
         }
-      }
+	  }
     }
   }
 }
