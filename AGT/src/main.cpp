@@ -122,8 +122,8 @@ int main() {
       }
     }
 
-    if (ImGui::CollapsingHeader("Directional Light and ShadowMapping")) {
-      ImGui::Checkbox("Enable Shadowmapping", &renderer->renderData.shadowOn);
+    if (ImGui::CollapsingHeader("Directional Light and Shadow Mapping")) {
+      ImGui::Checkbox("Enable Shadow Mapping", &renderer->renderData.shadowOn);
       ImGui::InputFloat3("Light Direction",
                          &renderer->scene->lightDirection[0]);
       ImGui::InputFloat("Tonemapping Exposure",
